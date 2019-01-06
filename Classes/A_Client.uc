@@ -15,19 +15,13 @@ simulated function ShowWindow() {
 
 	if (pp==None )
 	{
-		log("no pp");
 		return;
-	} else {
-		log("pp yeah " @ pp.Player.Console);
 	}
 
 	c = WindowConsole(pp.Player.Console);
 
-	log("checking");
-
 	if (c==None )
 	{
-		log ("LAWD IN HEAVEN");
 		return;
 	}
 
