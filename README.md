@@ -5,5 +5,5 @@ Author unknown (not me).
 
 ## Installation
 
-ServerActors=UWindowExample.UWindowExampleActor
-ServerPackages=UWindowExample
+  ServerActors=UWindowExample.UWindowExampleActor  
+  ServerPackages=UWindowExample
