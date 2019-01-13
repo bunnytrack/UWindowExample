@@ -1,6 +1,8 @@
 class A_ClientWindow expands UMenuDialogClientWindow;
 
 var UWindowMessageBoxArea MessageArea;
+var UWindowCheckBox       CheckBox;
+var UWindowSmallButton    CloseButton;
 
 function Created () {
 
@@ -9,17 +11,44 @@ function Created () {
 	WinLeft = Root.WinWidth/2 - WinWidth/2;
 	WinTop = Root.WinHeight/2 - WinHeight/2;
 
-	MessageArea = UWindowMessageBoxArea(CreateWindow(class'UWindowMessageBoxArea', 20, 20, 400, 42));
-	MessageArea.Message="Hey check out my sweet new window!";
+	MessageArea = UWindowMessageBoxArea(CreateWindow(class'UWindowMessageBoxArea', 20, 20, 260, 48));
+	MessageArea.Message="Please note that the map list on this server has been reduced to a selection of high-quality maps only.";
 
-	MessageArea = UWindowMessageBoxArea(CreateWindow(class'UWindowMessageBoxArea', 20, 80, 400, 16));
-	MessageArea.Message="It's amazingly 1337!";
+	MessageArea = UWindowMessageBoxArea(CreateWindow(class'UWindowMessageBoxArea', 20, 50, 260, 32));
+	MessageArea.Message="You can still play our complete selection of BT maps on Server 2 by saying '!go 2'.";
 
-	MessageArea = UWindowMessageBoxArea(CreateWindow(class'UWindowMessageBoxArea', 20, 120, 400, 36));
-	MessageArea.Message="Yeah go 1337-ness!";
+	CheckBox = UWindowCheckBox(CreateControl(class'UWindowCheckBox', 20, 82, 220, 16));
+	CheckBox.SetText("Tick this box to not show this message again");
+	CheckBox.SetFont(F_Normal);
+	CheckBox.Align = TA_Right;
+	// CheckBox.SetSize(260, 1);
+
+	CloseButton = UWindowSmallButton(CreateControl(class'UWindowSmallButton', 20, 105, 100, 20));
+	CloseButton.DownSound = sound 'UnrealShare.WeaponPickup';
+	CloseButton.Text= "Accept and Close";
 
 	SetAcceptsFocus();
+
 }
+
+function Notify(UWindowDialogControl C, byte E) {
+
+	super.Notify(C, E);
+
+	switch(E) {
+
+		case DE_Click:
+			 switch(C) {
+				case CloseButton:
+					ParentWindow.ParentWindow.Close();
+				break;
+			}
+		break;
+
+	}
+
+}
+
 
 defaultproperties
 {

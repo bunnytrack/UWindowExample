@@ -3,9 +3,12 @@ class A_Window expands UWindowFramedWindow;
 function Created()
 {
 	Super.Created();
-	SetSize(500, 250);
-	Log(Root.WinWidth);
-	Log(Root.WinHeight);
+	// SetSize(200, 150); // Unnecessary?
+	
+	GetPlayerOwner().Say("Root.WinWidth = " $ Root.WinWidth);
+	GetPlayerOwner().Say("Root.WinHeight = " $ Root.WinHeight);
+	GetPlayerOwner().Say(WinWidth $ " x " $ WinHeight);
+
 	WinLeft = (Root.WinWidth - WinWidth) / 2;
 	WinTop  = (Root.WinHeight - WinHeight) / 2;
 }
@@ -19,7 +22,7 @@ function Close (optional bool bByParent)
 defaultproperties
 {
     ClientClass=Class'A_ClientWindow'
-    WindowTitle="My New Window Title!"
-    bStatusBar=True
+    WindowTitle="BunnyTrack.net Notice"
+    bStatusBar=False
     bLeaveOnscreen=True
 }

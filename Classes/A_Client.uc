@@ -1,4 +1,4 @@
-class A_client expands Mutator;
+	class A_client expands Mutator;
 
 simulated function PostNetBeginPlay()
 {
@@ -10,6 +10,12 @@ simulated function ShowWindow() {
 	local PlayerPawn pp;
 	local WindowConsole c;
 	local A_Window w;
+
+	local float posX;
+	local float posY;
+
+	local float desiredWidth;
+	local float desiredHeight;
 
 	pp=PlayerPawn(Owner);
 
@@ -25,7 +31,7 @@ simulated function ShowWindow() {
 		return;
 	}
 
-	if ( (!c.bCreatedRoot)||(c.Root == None))
+	if ((!c.bCreatedRoot) || (c.Root == None))
 	{
 		c.CreateRootWindow(None);
 	}
@@ -33,7 +39,19 @@ simulated function ShowWindow() {
 	c.bQuickKeyEnable=True;
 	c.LaunchUWindow();
 
-	w = A_Window(c.Root.CreateWindow(Class'A_Window', 100, 100, 300, 190));
+	desiredWidth  = 300;
+	desiredHeight = 160;
+
+	posX = (c.Root.WinWidth - desiredWidth) / 2;
+	posY = (c.Root.WinHeight - desiredHeight) / 2;
+
+	pp.Say("DEBUG from A_Client:");
+	pp.Say("c.Root.WinWidth = " $ c.Root.WinWidth);
+	pp.Say("c.Root.WinHeight = " $ c.Root.WinHeight);
+	pp.Say("posX = " $ posX);
+	pp.Say("posY = " $ posY);
+
+	w = A_Window(c.Root.CreateWindow(Class'A_Window', posX, posY, desiredWidth, desiredHeight));
 	w.ShowWindow();
 }
 
