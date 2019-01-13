@@ -33,7 +33,7 @@ function Created () {
 
 function Notify(UWindowDialogControl C, byte E) {
 
-	super.Notify(C, E);
+	Super.Notify(C, E);
 
 	switch(E) {
 
