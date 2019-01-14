@@ -1,5 +1,7 @@
 class A_Client expands Mutator;
 
+var UWindowExampleActor UWin;
+
 simulated function PostNetBeginPlay()
 {
 	ShowWindow();
@@ -24,6 +26,16 @@ simulated function ShowWindow() {
 		return;
 	}
 
+	pp.Say("DEBUG from A_Client:");
+
+	UWin = PP.Spawn(class'UWindowExampleActor');
+
+	// Message already seen
+	if (UWin.getHasReadMessage()) {
+		Destroy();
+		return;
+	}
+
 	c = WindowConsole(pp.Player.Console);
 
 	if (c==None )
@@ -45,7 +57,6 @@ simulated function ShowWindow() {
 	posX = (c.Root.WinWidth - desiredWidth) / 2;
 	posY = (c.Root.WinHeight - desiredHeight) / 2;
 
-	pp.Say("DEBUG from A_Client:");
 	pp.Say("c.Root.WinWidth = " $ c.Root.WinWidth);
 	pp.Say("c.Root.WinHeight = " $ c.Root.WinHeight);
 	pp.Say("posX = " $ posX);

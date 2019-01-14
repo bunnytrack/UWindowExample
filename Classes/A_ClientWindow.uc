@@ -6,9 +6,12 @@ var UWindowSmallButton    CloseButton;
 
 var UWindowExampleActor UWin;
 
-function Created() {
+simulated function Created() {
 
 	Super.Created();
+
+	// UWin = class<UWindowExampleActor>(DynamicLoadObject(UWindowExampleActor, class'Class'));
+	UWin = GetPlayerOwner().Spawn(class'UWindowExampleActor');
 
 	WinLeft = Root.WinWidth/2 - WinWidth/2;
 	WinTop = Root.WinHeight/2 - WinHeight/2;
@@ -35,14 +38,16 @@ function Created() {
 
 simulated function MarkAsRead() {
 
+	Log("DEBUG: A_ClientWindow->MarkAsRead()");
+
 	GetPlayerOwner().Say("DEBUG FROM A_ClientWindow MarkAsRead()");
 
 	UWin.MarkAsRead();
 
 }
 
-simulated static function bool HasReadMessage() {
-	return UWin.bHasReadMessage;
+simulated function bool HasReadMessage() {
+	return UWin.getHasReadMessage();
 }
 
 function Notify(UWindowDialogControl C, byte E) {

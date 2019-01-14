@@ -10,18 +10,27 @@ replication {
 
 function PostBeginPlay()
 {
+
+	// Super.PostBeginPlay();
+
 	Log("[---------------------------------------]");
 	Log("[     UWindowExampleActor               ]");
 	Log("[---------------------------------------]");
-	Log(bHasReadMessage);
 
-	if (!bHasReadMessage)
-		spawn(class'A_SpawnNotify');
+	spawn(class'A_SpawnNotify');
 
 	Destroy();
+
+}
+
+simulated function bool getHasReadMessage() {
+	Log("DEBUG: UWindowExampleActor->getHasReadMessage()");
+	return bHasReadMessage;
 }
 
 simulated function MarkAsRead() {
+
+	Log("DEBUG: UWindowExampleActor->MarkAsRead()");
 
 	bHasReadMessage = True;
 

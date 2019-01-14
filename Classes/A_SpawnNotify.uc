@@ -10,7 +10,7 @@ simulated function PreBeginPlay()
 simulated event Actor SpawnNotification(Actor A)
 {	
 	if(A.IsA('PlayerPawn')) {
-		spawn(class'A_client', A);
+		spawn(class'A_client',A);
 	}
 	return A;
 }
