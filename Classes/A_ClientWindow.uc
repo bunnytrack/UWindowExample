@@ -4,6 +4,8 @@ var UWindowMessageBoxArea MessageArea;
 var UWindowCheckBox       CheckBox;
 var UWindowSmallButton    CloseButton;
 
+var UWindowExampleActor UWin;
+
 function Created() {
 
 	Super.Created();
@@ -33,8 +35,6 @@ function Created() {
 
 simulated function MarkAsRead() {
 
-	local UWindowExampleActor UWin;
-
 	GetPlayerOwner().Say("DEBUG FROM A_ClientWindow MarkAsRead()");
 
 	UWin.MarkAsRead();
@@ -42,7 +42,6 @@ simulated function MarkAsRead() {
 }
 
 simulated static function bool HasReadMessage() {
-	local UWindowExampleActor UWin;
 	return UWin.bHasReadMessage;
 }
 

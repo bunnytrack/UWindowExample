@@ -26,7 +26,7 @@ simulated function MarkAsRead() {
 	bHasReadMessage = True;
 
 	PP = PlayerPawn(Owner);
-	PP.Say("DEBUG from MarkAsRead:");
+	PP.Say("DEBUG from UWindowExampleActor MarkAsRead())");
 	PP.Say("bHasReadMessage: " $ string(bHasReadMessage));
 
 	SaveConfig();
