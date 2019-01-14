@@ -13,7 +13,7 @@ function Created()
 	WinTop  = (Root.WinHeight - WinHeight) / 2;
 }
 
-function Close (optional bool bByParent)
+function Close(optional bool bByParent)
 {
 	Super.Close(bByParent);
 	WindowConsole(GetPlayerOwner().Player.Console).CloseUWindow();

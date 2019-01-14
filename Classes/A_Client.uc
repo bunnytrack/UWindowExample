@@ -1,4 +1,4 @@
-	class A_client expands Mutator;
+class A_Client expands Mutator;
 
 simulated function PostNetBeginPlay()
 {
@@ -19,7 +19,7 @@ simulated function ShowWindow() {
 
 	pp=PlayerPawn(Owner);
 
-	if (pp==None )
+	if (pp==None)
 	{
 		return;
 	}

@@ -4,7 +4,7 @@ var UWindowMessageBoxArea MessageArea;
 var UWindowCheckBox       CheckBox;
 var UWindowSmallButton    CloseButton;
 
-function Created () {
+function Created() {
 
 	Super.Created();
 
@@ -31,7 +31,26 @@ function Created () {
 
 }
 
+simulated function MarkAsRead() {
+
+	local UWindowExampleActor UWin;
+
+	GetPlayerOwner().Say("DEBUG FROM A_ClientWindow MarkAsRead()");
+
+	UWin.MarkAsRead();
+
+}
+
+simulated static function bool HasReadMessage() {
+	local UWindowExampleActor UWin;
+	return UWin.bHasReadMessage;
+}
+
 function Notify(UWindowDialogControl C, byte E) {
+
+	local bool bRead;
+
+	bRead = HasReadMessage();
 
 	Super.Notify(C, E);
 
@@ -40,6 +59,14 @@ function Notify(UWindowDialogControl C, byte E) {
 		case DE_Click:
 			 switch(C) {
 				case CloseButton:
+					GetPlayerOwner().Say("DEBUG from A_ClientWindow:");
+					GetPlayerOwner().Say("UWin.bHasReadMessage: " $ string(bRead));
+					GetPlayerOwner().Say("CheckBox.bChecked: " $ string(CheckBox.bChecked));
+
+					if (CheckBox.bChecked) {
+						MarkAsRead();
+					}
+
 					ParentWindow.ParentWindow.Close();
 				break;
 			}
